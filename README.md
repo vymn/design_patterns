@@ -57,6 +57,7 @@ git clone https://github.com/vymn/design_patterns.git
 cd design_patterns
 flutter pub get
 flutter run
+```
 You can navigate to specific examples by setting the desired home: widget in main.dart.
 
 📚 Resources

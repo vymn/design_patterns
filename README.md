@@ -13,10 +13,6 @@ lib/
 ├── creational/
 └── structural/
 
-markdown
-Copy
-Edit
-
 - **Behavioral Patterns** – Concerned with communication between objects.
 - **Creational Patterns** – Deal with object creation mechanisms.
 - **Structural Patterns** – Concerned with how classes and objects are composed.
@@ -57,8 +53,8 @@ Each pattern folder includes:
 To run a pattern example:
 
 ```bash
-git clone https://github.com/your-username/flutter-design-patterns.git
-cd flutter-design-patterns
+git clone https://github.com/vymn/design_patterns.git
+cd design_patterns
 flutter pub get
 flutter run
 You can navigate to specific examples by setting the desired home: widget in main.dart.
@@ -79,4 +75,4 @@ Feel free to contribute more patterns or improve existing ones! Fork the repo an
 This project is licensed under the MIT License.
 
 💡 Author
-Made with ❤️ by [Your Name or GitHub handle]
+Created By a Human from the [MATRIX]

@@ -1,10 +1,10 @@
-import 'package:design_patterns/builder/alert_builder.dart';
-import 'package:design_patterns/factory/notification_widget.dart';
-import 'package:design_patterns/singleton/singleton.dart';
+import 'package:design_patterns/creational/builder/alert_builder.dart';
+import 'package:design_patterns/creational/factory/notification_widget.dart';
+import 'package:design_patterns/creational/singleton/singleton.dart';
 import 'package:design_patterns/memento/form_state.dart' as custom_form;
 import 'package:design_patterns/memento/form_state.dart';
 import 'package:flutter/material.dart';
-import 'package:design_patterns/strategy/strategy.dart';
+import 'package:design_patterns/structural/strategy/strategy.dart';
 
 void main() {
   final config = AppConfig();

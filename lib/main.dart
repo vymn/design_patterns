@@ -1,6 +1,6 @@
 import 'package:design_patterns/builder/alert_builder.dart';
 import 'package:design_patterns/factory/notification_widget.dart';
-import 'package:design_patterns/factory/singleton/singleton.dart';
+import 'package:design_patterns/singleton/singleton.dart';
 import 'package:design_patterns/memento/form_state.dart' as custom_form;
 import 'package:design_patterns/memento/form_state.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +65,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildStrategyPatternDemo() {
+    
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -235,3 +236,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+
+

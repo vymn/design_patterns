@@ -1,3 +1,8 @@
+
+
+ enum LoginType { google, facebook, email }
+
+
 abstract class LoginStrategy {
   
   void login(String username, String password);
@@ -41,23 +46,3 @@ class Login {
   }
 }
 
-
- enum LoginType { google, facebook, email }
-void main() {
-  final login = Login();
-
-  // Using Google login strategy
- 
-  
-  // Simulating user selection (in real app, this could come from UI)
-  LoginType selectedType = LoginType.facebook;
-  
-  final strategies = {
-    LoginType.google: GoogleLoginStrategy(),
-    LoginType.facebook: FacebookLoginStrategy(),
-    LoginType.email: EmailLoginStrategy(),
-  };
-  login.setStrategy(strategies[selectedType]!);
-  login.login('','');
-
-}

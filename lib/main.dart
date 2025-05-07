@@ -1,8 +1,10 @@
 import 'package:design_patterns/creational/builder/alert_builder.dart';
 import 'package:design_patterns/creational/factory/notification_widget.dart';
 import 'package:design_patterns/creational/singleton/singleton.dart';
-import 'package:design_patterns/memento/form_state.dart' as custom_form;
-import 'package:design_patterns/memento/form_state.dart';
+import 'package:design_patterns/behavioral/memento/form_state.dart' as custom_form;
+import 'package:design_patterns/behavioral/memento/form_state.dart';
+import 'package:design_patterns/demo/presentation/widgets/category_builder.dart';
+import 'package:design_patterns/demo/presentation/widgets/pattern_card.dart';
 import 'package:flutter/material.dart';
 import 'package:design_patterns/structural/strategy/strategy.dart';
 
@@ -52,107 +54,30 @@ class _HomeState extends State<Home> {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          _buildPatternCategory(
-            'Creational Patterns',
-            'Patterns that deal with object creation mechanisms.',
-            [
-              _buildPatternCard(
-                'Builder Pattern',
-                'Separates the construction of a complex object from its representation.',
-                _buildBuilderPatternDemo(),
-              ),
-              _buildPatternCard(
-                'Factory Pattern',
-                'Creates objects without exposing the instantiation logic.',
-                _buildFactoryPatternDemo(),
-              ),
-              _buildPatternCard(
-                'Singleton Pattern',
-                'Ensures a class has only one instance and provides a global point of access to it.',
-                _buildSingletonPatternDemo(),
-              ),
+          PatternCategory(
+            title: 'Creational Patterns',
+            description: 'Patterns that deal with object creation mechanisms.',
+            patterns: [
+              PatternCard(title: 'Builder Pattern', description: 'Separates the construction of a complex object from its representation.', demo: _buildBuilderPatternDemo()),
+              PatternCard(title: 'Factory Pattern', description: 'Creates objects without exposing the instantiation logic.', demo: _buildFactoryPatternDemo()),
+              PatternCard(title: 'Singleton Pattern', description: 'Ensures a class has only one instance and provides a global point of access to it.', demo: _buildSingletonPatternDemo()),
             ],
           ),
           const SizedBox(height: 24),
-          _buildPatternCategory(
-            'Structural Patterns',
-            'Patterns that focus on class and object composition.',
-            [
-              _buildPatternCard(
-                'Strategy Pattern',
-                'Defines a family of algorithms and makes them interchangeable.',
-                _buildStrategyPatternDemo(),
-              ),
+          PatternCategory(
+            title: 'Structural Patterns',
+            description: 'Patterns that focus on class and object composition.',
+            patterns: [
+              PatternCard(title: 'Strategy Pattern', description: 'Defines a family of algorithms and makes them interchangeable.', demo: _buildStrategyPatternDemo()),
             ],
           ),
           const SizedBox(height: 24),
-          _buildPatternCategory(
-            'Behavioral Patterns',
-            'Patterns that identify common communication patterns between objects.',
-            [
-              _buildPatternCard(
-                'Memento Pattern',
-                'Captures and externalizes an object\'s internal state.',
-                _buildMementoPatternDemo(),
-              ),
+          PatternCategory(
+            title: 'Behavioral Patterns',
+            description: 'Patterns that identify common communication patterns between objects.',
+            patterns: [
+              PatternCard(title: 'Memento Pattern', description: 'Captures and externalizes an object\'s internal state.', demo: _buildMementoPatternDemo()),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPatternCategory(String title, String description, List<Widget> patterns) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          description,
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey[600],
-          ),
-        ),
-        const SizedBox(height: 16),
-        ...patterns,
-      ],
-    );
-  }
-
-  Widget _buildPatternCard(String title, String description, Widget demo) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      elevation: 4,
-      child: ExpansionTile(
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Text(
-            description,
-            style: TextStyle(
-              color: Colors.grey[600],
-            ),
-          ),
-        ),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: demo,
           ),
         ],
       ),
@@ -330,6 +255,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
-

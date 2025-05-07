@@ -40,32 +40,126 @@ class _HomeState extends State<Home> {
   final custom_form.FormState _formState = custom_form.FormState();
   final FormStateManager _formStateManager = FormStateManager();
   String _currentNotificationType = 'email';
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Design Patterns Demo'),
+        title: const Text('Flutter Design Patterns Playbook'),
+        centerTitle: true,
+        elevation: 2,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          _buildStrategyPatternDemo(),
-          const Divider(),
-          _buildBuilderPatternDemo(),
-          const Divider(),
-          _buildFactoryPatternDemo(),
-          const Divider(),
-          _buildSingletonPatternDemo(),
-          const Divider(),
-          _buildMementoPatternDemo(),
+          _buildPatternCategory(
+            'Creational Patterns',
+            'Patterns that deal with object creation mechanisms.',
+            [
+              _buildPatternCard(
+                'Builder Pattern',
+                'Separates the construction of a complex object from its representation.',
+                _buildBuilderPatternDemo(),
+              ),
+              _buildPatternCard(
+                'Factory Pattern',
+                'Creates objects without exposing the instantiation logic.',
+                _buildFactoryPatternDemo(),
+              ),
+              _buildPatternCard(
+                'Singleton Pattern',
+                'Ensures a class has only one instance and provides a global point of access to it.',
+                _buildSingletonPatternDemo(),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          _buildPatternCategory(
+            'Structural Patterns',
+            'Patterns that focus on class and object composition.',
+            [
+              _buildPatternCard(
+                'Strategy Pattern',
+                'Defines a family of algorithms and makes them interchangeable.',
+                _buildStrategyPatternDemo(),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          _buildPatternCategory(
+            'Behavioral Patterns',
+            'Patterns that identify common communication patterns between objects.',
+            [
+              _buildPatternCard(
+                'Memento Pattern',
+                'Captures and externalizes an object\'s internal state.',
+                _buildMementoPatternDemo(),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPatternCategory(String title, String description, List<Widget> patterns) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          description,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey[600],
+          ),
+        ),
+        const SizedBox(height: 16),
+        ...patterns,
+      ],
+    );
+  }
+
+  Widget _buildPatternCard(String title, String description, Widget demo) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      elevation: 4,
+      child: ExpansionTile(
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Text(
+            description,
+            style: TextStyle(
+              color: Colors.grey[600],
+            ),
+          ),
+        ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: demo,
+          ),
         ],
       ),
     );
   }
 
   Widget _buildStrategyPatternDemo() {
-    
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),

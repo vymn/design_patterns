@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
             title: 'Structural Patterns',
             description: 'Patterns that focus on class and object composition.',
             patterns: [
-              PatternCard(title: 'Strategy Pattern', description: 'Defines a family of algorithms and makes them interchangeable.', demo: StrategyPatternDemo(_login: _login)),
+              PatternCard(title: 'Strategy Pattern', description: 'Defines a family of algorithms and makes them interchangeable.', demo: StrategyPatternDemo(login: _login)),
             ],
           ),
           const SizedBox(height: 24),
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-  
+
   Widget _buildFactoryPatternDemo() {
     return Card(
       child: Padding(

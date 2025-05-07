@@ -3,6 +3,9 @@ import 'package:design_patterns/creational/factory/notification_widget.dart';
 import 'package:design_patterns/creational/singleton/singleton.dart';
 import 'package:design_patterns/behavioral/memento/form_state.dart' as custom_form;
 import 'package:design_patterns/behavioral/memento/form_state.dart';
+import 'package:design_patterns/demo/presentation/screens/builder_pattern_demo.dart';
+import 'package:design_patterns/demo/presentation/screens/singleton_pattern_demo.dart';
+import 'package:design_patterns/demo/presentation/screens/strategy_pattern_demo.dart';
 import 'package:design_patterns/demo/presentation/widgets/category_builder.dart';
 import 'package:design_patterns/demo/presentation/widgets/pattern_card.dart';
 import 'package:flutter/material.dart';
@@ -58,9 +61,9 @@ class _HomeState extends State<Home> {
             title: 'Creational Patterns',
             description: 'Patterns that deal with object creation mechanisms.',
             patterns: [
-              PatternCard(title: 'Builder Pattern', description: 'Separates the construction of a complex object from its representation.', demo: _buildBuilderPatternDemo()),
+              PatternCard(title: 'Builder Pattern', description: 'Separates the construction of a complex object from its representation.', demo: BuilderPatternDemo(context: context)),
               PatternCard(title: 'Factory Pattern', description: 'Creates objects without exposing the instantiation logic.', demo: _buildFactoryPatternDemo()),
-              PatternCard(title: 'Singleton Pattern', description: 'Ensures a class has only one instance and provides a global point of access to it.', demo: _buildSingletonPatternDemo()),
+              PatternCard(title: 'Singleton Pattern', description: 'Ensures a class has only one instance and provides a global point of access to it.', demo: SingletonPatternDemo()),
             ],
           ),
           const SizedBox(height: 24),
@@ -68,7 +71,7 @@ class _HomeState extends State<Home> {
             title: 'Structural Patterns',
             description: 'Patterns that focus on class and object composition.',
             patterns: [
-              PatternCard(title: 'Strategy Pattern', description: 'Defines a family of algorithms and makes them interchangeable.', demo: _buildStrategyPatternDemo()),
+              PatternCard(title: 'Strategy Pattern', description: 'Defines a family of algorithms and makes them interchangeable.', demo: StrategyPatternDemo(_login: _login)),
             ],
           ),
           const SizedBox(height: 24),
@@ -83,71 +86,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-  Widget _buildStrategyPatternDemo() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Strategy Pattern - Login', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              children: LoginType.values.map((type) {
-                return ElevatedButton(
-                  onPressed: () {
-                    final strategies = {
-                      LoginType.google: GoogleLoginStrategy(),
-                      LoginType.facebook: FacebookLoginStrategy(),
-                      LoginType.email: EmailLoginStrategy(),
-                    };
-                    _login.setStrategy(strategies[type]!);
-                    _login.login('user@example.com', 'password');
-                  },
-                  child: Text('Login with ${type.name}'),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBuilderPatternDemo() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Builder Pattern - Alert Dialog', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertBuilder()
-                    .setTitle('Custom Alert')
-                    .setMessage('This alert was created using the Builder pattern')
-                    .setIcon(Icons.info)
-                    .setButtonText('Got it!')
-                    .setOnButtonPressed(() {
-                      Navigator.of(context).pop();
-                    })
-                    .build(),
-                );
-              },
-              child: const Text('Show Custom Alert'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+  
   Widget _buildFactoryPatternDemo() {
     return Card(
       child: Padding(
@@ -181,22 +120,6 @@ class _HomeState extends State<Home> {
                 type: _currentNotificationType,
               ).build(),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSingletonPatternDemo() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Singleton Pattern - App Config', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            Text('API URL: ${AppConfig().apiUrl}'),
           ],
         ),
       ),
@@ -254,4 +177,5 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
 }
